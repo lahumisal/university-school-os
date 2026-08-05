@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: university-school-os
+
+server:
+  port: 8090
