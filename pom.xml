@@ -9,7 +9,7 @@
 		<relativePath/>
 	</parent>
 	<groupId>com.universityschoolos</groupId>
-	<artifactId>university-school-os</artifactId>
+	<artifactId>UniversitySchoolOS</artifactId>
 	<version>0.0.1</version>
     <name>UniversitySchoolOS</name>
     <description>University and School Management Operating System</description>
