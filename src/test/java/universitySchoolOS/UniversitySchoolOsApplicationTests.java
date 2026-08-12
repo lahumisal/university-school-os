@@ -1,4 +1,4 @@
-package UniversitySchoolOS;
+package universitySchoolOS;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
