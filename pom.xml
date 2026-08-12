@@ -11,7 +11,7 @@
 	<groupId>com.universityschoolos</groupId>
 	<artifactId>UniversitySchoolOS</artifactId>
 	<version>0.0.1</version>
-    <name>UniversitySchoolOS</name>
+    <name>universitySchoolOS</name>
     <description>University and School Management Operating System</description>
 	<url/>
 	<licenses>
