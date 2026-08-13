@@ -23,7 +23,7 @@
 	</licenses>
 	<developers>
         <developer>
-            <name>Lahu Misal</name>
+            <name>Lahu</name>
             <email>lahumisal402@gmail.com</email>
         </developer>
 	</developers>
@@ -64,6 +64,24 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-log4j2</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.7.13</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.46</version>
+        </dependency>
+
 	</dependencies>
 
 	<build>
