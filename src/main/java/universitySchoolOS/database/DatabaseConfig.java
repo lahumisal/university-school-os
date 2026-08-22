@@ -1,4 +1,4 @@
-package universitySchoolOS.Database;
+package universitySchoolOS.database;
 
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.context.annotation.Bean;
