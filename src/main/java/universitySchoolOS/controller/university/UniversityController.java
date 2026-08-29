@@ -1,9 +1,8 @@
 package universitySchoolOS.controller.university;
 
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import universitySchoolOS.model.Users;
-import universitySchoolOS.model.request.CreateUserDTO;
+//import universitySchoolOS.model.Users;
+//import universitySchoolOS.model.request.CreateUserDTO;
 
 @RestController
 @RequestMapping("/v1/api/university")
@@ -14,9 +13,9 @@ public class UniversityController {
         return "university controller";
     }
 
-    @PostMapping("/createUser")
-    public ResponseEntity<Users> createUser(@RequestBody CreateUserDTO createUserDTO) {
-
-        return null;
-    }
+//    @PostMapping("/createUser")
+//    public ResponseEntity<Users> createUser(@RequestBody CreateUserDTO createUserDTO) {
+//
+//        return null;
+//    }
 }
