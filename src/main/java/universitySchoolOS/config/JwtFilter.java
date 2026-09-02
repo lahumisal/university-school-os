@@ -48,7 +48,7 @@ public class JwtFilter extends OncePerRequestFilter {
             }
 
             // Bellow i get username from token
-            log.info("extract initialize from token....");
+//            log.info("extract initialize from token....");
             username = jwtService.extractUserNameFromToken(token);
         }
 
@@ -57,7 +57,7 @@ public class JwtFilter extends OncePerRequestFilter {
 
             // here i check the user is part of database or not and it will give entire userDetail object
             UserDetails userDetails = context.getBean(MyUserDetailService.class).loadUserByUsername(username);
-            log.info("userDetails get successfully from context... ");
+//            log.info("userDetails get successfully from context... ");
 
             if(jwtService.validateToken(token, userDetails )){
                 // bellow token as for principle, creadentials and authorities

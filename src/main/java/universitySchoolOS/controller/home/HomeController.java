@@ -10,15 +10,15 @@ import universitySchoolOS.model.response.LoginResponse;
 import universitySchoolOS.service.UserService;
 
 @RestController
-@RequestMapping("/v1/api/home")
+@RequestMapping("/v1/api/auth")
 public class HomeController {
 
     @Autowired
     private UserService userService;
 
     @GetMapping
-    public String home() {
-        return "Home controller";
+    public String auth() {
+        return "auth controller";
     }
 
     @PostMapping("/register")

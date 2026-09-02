@@ -32,7 +32,7 @@ public class CorsConfig {
         log.info("loaded configuration properties successfully");
         UrlBasedCorsConfigurationSource source =new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
-        log.info("added source.");
+        log.info("added source of cors configuration.");
         return source;
     }
 }

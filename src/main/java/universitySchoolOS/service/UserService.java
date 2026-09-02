@@ -72,18 +72,5 @@ public class UserService {
         }
         return null; // Return null if authentication fails
     }
-    
-    public String logout(String token) {
-        if (token != null && !token.isEmpty()) {
-            try {
-                jwtService.blacklistToken(token);
-                log.info("Token blacklisted successfully");
-                return "Logout successfully";
-            } catch (Exception e) {
-                log.error("Error during logout: {}", e.getMessage());
-                return "Logout not successfully";
-            }
-        }
-        return "Logout not successfully";
-    }
+
 }

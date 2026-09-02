@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
 import org.springframework.stereotype.Component;
+import universitySchoolOS.AppConstatnt.AppConstant;
 import universitySchoolOS.service.JwtService;
 
 @Slf4j
@@ -23,9 +24,14 @@ public class JwtLogoutHandler implements LogoutHandler {
             HttpServletRequest request,
             HttpServletResponse response,
             Authentication authentication) {
-
-        jwtService.logout(request);
-
+        boolean success= jwtService.logout(request);
+        if (success) {
+            response.setStatus(HttpServletResponse.SC_OK);
+            log.info("Logout successful");
+        } else {
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            log.info("Logout failed: token already invalid");
+        }
         log.info("Logout handler executed");
     }
 }

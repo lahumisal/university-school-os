@@ -16,6 +16,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import universitySchoolOS.AppConstatnt.AppConstant;
 
 @Slf4j
 @Configuration
@@ -37,9 +38,9 @@ public class SecurityConfig {
         return http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/v1/api/home/login").permitAll()
-                        .requestMatchers("/v1/api/home/register").permitAll()
-                        .requestMatchers("/v1/api/home/logout").authenticated()
+                        .requestMatchers("/v1/api/auth/login").permitAll()
+                        .requestMatchers("/v1/api/auth/register").permitAll()
+                        .requestMatchers("/v1/api/auth/logout").authenticated()
                         .requestMatchers("/v1/api/principal/**").hasAuthority("PRINCIPAL")
                         .requestMatchers("/v1/api/teacher/**").hasAuthority("TEACHER")
                         .requestMatchers("/v1/api/student/**").hasAuthority("STUDENT")
@@ -53,16 +54,15 @@ public class SecurityConfig {
                 )
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .logout(logout -> logout
-                        .logoutUrl("/v1/api/home/logout")
+                        .logoutUrl("/v1/api/auth/logout")
                         .addLogoutHandler(jwtLogoutHandler)
                         .logoutSuccessHandler(
                                 (request, response, authentication) -> {
-                                    response.setStatus(HttpServletResponse.SC_OK);
-                                    response.setContentType("application/json");
-                                    response.getWriter().write("{\"message\":\"Logout successful\"}"
-                                    );
-                                }
-                        )
+                                    if (response.getStatus() == HttpServletResponse.SC_OK) {
+                                        response.setContentType("text/plain");
+                                        response.getWriter().write(AppConstant.LOGOUT);
+                                    }
+                        })
                 )
                 .build();
     }
@@ -73,13 +73,13 @@ public class SecurityConfig {
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider(userDetailsService);
         daoAuthenticationProvider.setPasswordEncoder(new BCryptPasswordEncoder(12));
-        log.info("daoAuthenticationProvider: {}", daoAuthenticationProvider);
+//        log.info("daoAuthenticationProvider: {}", daoAuthenticationProvider);
         return daoAuthenticationProvider;
     }
 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
-        log.info("In AuthenticationManager");
+//        log.info("In AuthenticationManager");
         return config.getAuthenticationManager();
     }
 
