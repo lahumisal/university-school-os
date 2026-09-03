@@ -1,8 +1,6 @@
 package universitySchoolOS.controller.university;
 
 import org.springframework.web.bind.annotation.*;
-//import universitySchoolOS.model.Users;
-//import universitySchoolOS.model.request.CreateUserDTO;
 
 @RestController
 @RequestMapping("/v1/api/university")
