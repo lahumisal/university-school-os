@@ -22,16 +22,17 @@ import java.util.UUID;
 @Service
 public class UserService {
 
-    @Autowired
-    private UserRepo userRepo;
+    private final UserRepo userRepo;
+    private final JwtService jwtService;
+    private final AuthenticationManager authenticationManager;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    @Autowired
-    private JwtService  jwtService;
-
-    @Autowired
-    public AuthenticationManager authManager;
-
-    private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
+    public UserService(UserRepo userRepo, JwtService jwtService, AuthenticationManager authenticationManager, BCryptPasswordEncoder bCryptPasswordEncoder) {
+        this.userRepo = userRepo;
+        this.jwtService = jwtService;
+        this.authenticationManager = authenticationManager;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+    }
 
     public String registerUser(@RequestBody RegisterUserDTO registerUserDTO) {
         Users user = new Users();
@@ -41,14 +42,14 @@ public class UserService {
         user.setLastName(registerUserDTO.getLastName());
         user.setEmail(registerUserDTO.getEmail());
         user.setContactNumber(registerUserDTO.getContactNumber());
-        user.setPassword(encoder.encode(registerUserDTO.getPassword()));
+        user.setPassword(bCryptPasswordEncoder.encode(registerUserDTO.getPassword()));
         userRepo.save(user);
         return "Register success";
     }
 
     public LoginResponse verifyUser(LoginReqDTO loginReqDTO) {
         log.info("verifying the user");
-        Authentication authentication = authManager.authenticate(new UsernamePasswordAuthenticationToken(loginReqDTO.getUsername(), loginReqDTO.getPassword()));
+        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginReqDTO.getUsername(), loginReqDTO.getPassword()));
         if(authentication.isAuthenticated()){
             log.info("Authentication result: {}", authentication.getPrincipal());
             

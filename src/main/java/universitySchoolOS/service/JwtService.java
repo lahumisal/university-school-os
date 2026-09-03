@@ -29,9 +29,6 @@ public class JwtService {
     @Value("${jwt.secret}")
     private String secretKey;
 
-    @Value("${jwt.algorithm}")
-    private  String algorithm;
-
     // Store blacklisted tokens
     private final Set<String> blacklistedTokens = ConcurrentHashMap.newKeySet();
 
@@ -75,21 +72,19 @@ public class JwtService {
                 .getPayload();
 
     }
-//  use UserDetails when you work with email or username instatnt of UserPrinciple
+
     public boolean validateToken(String token, UserDetails userDetails) {
         log.info("initialize JWT validateToken");
         final String username= extractUserNameFromToken(token);
-//        log.info("JWT loggedUserId: {}", username);
-//        log.info("User authorities: {}", userDetails.getAuthorities());
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
 
     private boolean isTokenExpired(String token) {
         log.info("validating token expired or not....");
-        return extractExpiraction(token).before(new Date());
+        return extractExpiration(token).before(new Date());
     }
 
-    private Date extractExpiraction(String token) {
+    private Date extractExpiration(String token) {
         return extractClaim(token, Claims:: getExpiration);
     }
     
