@@ -4,7 +4,7 @@
 
     <Properties>
         <Property name="LOG_PATTERN">
-            %d{yyyy-MM-dd [HH:mm:ss]} [%-5level] [%t] %logger{3} : %msg%n
+            %d{yyyy-MM-dd [HH:mm:ss]} [%-5level] [%t] %logger{1} : %msg%n
         </Property>
         <Property name="LOG_DIR">
             logs

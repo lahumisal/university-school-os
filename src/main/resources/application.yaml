@@ -1,6 +1,7 @@
 spring:
   application:
     name: university-school-os
-
-server:
-  port: 8090
+  profiles:
+    active: dev
+  config:
+    import: configserver:http://localhost:8888
